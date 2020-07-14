@@ -1,0 +1,29 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatScreen {
+  display: flex;
+  flex-flow: row wrap;
+  /* justify-content: center; */
+  align-items: flex-start;
+  width: 700px;
+  min-height: 400px;
+  padding: 1%;
+}
+
+.chatbox {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 700px;
+}
+.chatInput {
+  display: flex;
+  align-items: center;
+}
+.chatButton {
+  display: flex;
+  align-items: center;
+}

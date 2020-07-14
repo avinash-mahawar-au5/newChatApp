@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-client": "npm start --prefix client",
+    "start-server": "npm start --prefix server",
+    "start": "concurrently \"npm rum start-client\" \"npm rum start-server\" "
   },
   "repository": {
     "type": "git",
