@@ -26,9 +26,7 @@ export const sendChatMessages = (message) => {
   return (dispatch) =>
     dispatch({
       type: "RECIEVED_MESSAGES",
-      payload: {
-        message,
-      },
+      payload: message,
     });
 };
 
@@ -100,8 +98,23 @@ export const signIn = ({ username, password }) => {
 };
 
 export const createNewChannel = (newChannel) => {
+  console.log("channel action", newChannel);
   return (dispatch) => {
-    return axios.post(`room/create-room`, newChannel);
+    API.post("room/create-room", { newChannel })
+      .then((res) => {
+        if (res.code == 200) {
+          cogoToast.success(`Welcome back!`, {
+            position: "bottom-right",
+          });
+          dispatch({
+            type: "CREATE_NEW_CHANNEL",
+            payload: {
+              res,
+            },
+          });
+        }
+      })
+      .catch((e) => console.log(e));
   };
 };
 export const reconnect = (last_session) => {

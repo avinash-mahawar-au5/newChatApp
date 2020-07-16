@@ -5,9 +5,9 @@ import {
   RECONNECT,
   RESET_LAST_CONNECTION,
   LOGOUT,
-  CREATE_NEW_CHANNEL,
   ROOMS,
   SET_CHANNEL_NAME,
+  CREATE_NEW_CHANNEL,
 } from "../actions/app";
 
 const defaultState = {
@@ -18,27 +18,24 @@ const defaultState = {
   },
   rooms: [],
   currentChannel: null,
-
-  chatSchema: {
-    currentChannel: "",
-    username: "",
-    messages: [],
-  },
-
-  general: [
-    { username: "avi", message: "Hello" },
-    { username: "avinash", message: "Hello" },
-    { username: "avinash", message: "Hello" },
+  newRoomCreated: "",
+  data: [
+    {
+      message: ["one"],
+    },
   ],
-  topic2: [
-    { username: "yogesh", message: "Hello" },
-    { username: "nitin", message: "Hello" },
-    { username: "yogesh", message: "Hello" },
+  information: [
+    {
+      UserName: {
+        User: "",
+        Channels: [],
+        LiveChannel: { User: "", messgaes: [] },
+      },
+    },
   ],
 };
 
 export default (state = defaultState, action) => {
-  // console.log("Aciton", action);
   let stateCpoy = JSON.parse(JSON.stringify(state));
   if (action.type === "ROOMS") {
     stateCpoy.rooms = action.payload;
@@ -89,8 +86,15 @@ export default (state = defaultState, action) => {
         ...state,
         logged: defaultState.logged,
       };
+
+    // myStuff = [...myStuff, { name: 'js lovin fool' }]
     case "RECIEVED_MESSAGES":
-      console.log(action.payload);
+      console.log("reducer recieved", action.payload);
+      stateCpoy.data = [];
+      return stateCpoy;
+
+    case "CREATE_NEW_CHANNEL":
+      stateCpoy.newRoomCreated = action.payload;
 
       return stateCpoy;
 

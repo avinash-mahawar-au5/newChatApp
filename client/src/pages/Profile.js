@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import TextField from "@material-ui/core/TextField";
 import { fetchRooms } from "../actions/app";
-import { createNewChannel } from "../actions/app";
+import {createNewChannel} from "../actions/app";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Route } from "react-router";
@@ -15,28 +15,28 @@ import Chat from "../components/Chat";
 import { setChannelName } from "../actions/app";
 class Profile extends Component {
   state = {
+    channel: "",
     currentChannel: "",
   };
 
   componentDidMount() {
     this.props.fetchRooms();
   }
-  // xfvgxffffffffffff
+
   changeInChannel(e) {
     this.setState({
-      channer: e.target.value,
+      channel: e.target.value,
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const newRoom = {
+    const newChannel = {
       channel: this.state.channel,
     };
-    console.log(newRoom);
-    this.props.createNewChannel(newRoom);
-  }
-  // fffffffffff
+
+    this.props.createNewChannel(newChannel);
+  };
 
   setCurrentChannel(havachannel) {
     this.props.setChannelName(havachannel);
@@ -66,7 +66,7 @@ class Profile extends Component {
                     </ListItem>
                   );
                 })}
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={(e) => this.handleSubmit(e)}>
                 <div className="row ml-5">
                   <TextField
                     name="channel"

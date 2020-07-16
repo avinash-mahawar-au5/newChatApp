@@ -70,7 +70,7 @@ class Chat extends Component {
 }
 
 const stateToProps = (state) => (
-  console.log(state),
+  console.log("state in chat", state),
   {
     username: state.app.logged.username,
     currentChannel: state.app.currentChannel,
